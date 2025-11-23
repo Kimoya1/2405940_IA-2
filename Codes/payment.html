@@ -1,0 +1,275 @@
+<!--Name: Kimoya Francis
+     Student ID: 2405940
+     Course: Web Programming
+     Individual Assessment #2 - E-Commerce Website
+     Payment & Billing Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KimmyCakes | Payment & Billing</title> <!-- Website Title-->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section: with background image, logo, tagline and navigation -->
+    <header class="header">
+        <div class="picture-bg">
+            <div class="logo"> 
+                <img src="../assets/logo.png" alt="Kimmy Cakes Logo" class="logo-image">
+                <h1>KimmyCakes</h1>
+                <p class="tagline">"Sweet Moments, Baked to Perfection"</p>
+            </div>
+        </div>
+        
+        <!-- Navigation bar: with dropdown menu -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="products.html">All Products</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Custom Orders</a></li>
+                    </ul>
+                </li>
+                   
+                <!-- Cart Page(active) -->
+                <li class="dropdown">
+                    <a href="cart.html" id="active">Cart</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Order Summary</a></li>
+                        <li><a href="payment.html" id="active">Payment & Billing</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="invoice.html">Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.html">About Us</a></li>
+                
+                <li class="dropdown">
+                  <a href="#">Account</a>
+                  <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Order History</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="contact.html">Contact Us</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+     <!-- Payment Section  -->
+    <main class="payment-section">
+
+        <!-- Order Summary before paying -->
+     <h2>Review your order and complete your purchase below.</h2>
+
+     <section>
+            <h3>Your Order Summary</h3>
+
+            <!-- Table where cart items will load from JavaScript -->
+            <table id="checkout-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="checkout-items">
+                <!-- The items will show here -->
+                </tbody>
+            </table>
+
+            <!-- Updated totals that the JS will calcualate-->
+            <div class="total-summary">
+                <p><strong>Subtotal:</strong> <span id="subtotal">$0.00</span></p>
+                <p><strong>Shipping Fee:</strong> <span id="shipping">$500.00</span></p>
+                <p><strong>Tax (5%):</strong> <span id="tax">$0.00</span></p>
+                <p><strong>Total:</strong> <span id="grand-total">$0.00</span></p>
+           </div>
+        </section>
+
+        <!-- The Payment and Billing Form Section -->
+        <h2>Payment & Billing</h2>
+        <p>Please enter your billing details to complete your order.</p>
+
+        <!--  Billing form container -->
+        <div class="billing-box">
+            <form id="paymentForm">
+
+                <!-- Full Name  -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="Please enter full name" required>
+
+                <!-- Billing Address  -->
+                <label for="billingAddress">Billing Address:</label>
+                <input type="text" id="billingAddress" placeholder="Please enter billing address" required>
+
+                <!-- Card number  -->
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" required>
+                
+                <!-- Expiary date & cvv  -->
+                <div class="double-fields">
+                    <div>
+                        <label for="expiry">Expiry Date:</label>
+                        <input type="month" id="expiry" required>
+                    </div>
+                    
+                    <div>
+                        <label for="cvv">CVV:</label>
+                        <input type="password" id="cvv" maxlength="4" placeholder="123" required>
+                    </div>
+                </div>
+
+                <!-- Payment dropdown  -->
+                <label for="paymentMethod">Payment Method:</label>
+                <select id="paymentMethod" required>
+                    <option value="">- Select Method -</option>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="paypal">Paypal</option>
+                    <option value="cash">Cash on Delivery</option>
+                </select>
+
+                <!-- Payment Amount   -->
+                <label for="payment">Payment Amount:</label>
+                <input type="number" id="payment" placeholder="Please enter amount to pay" required>
+
+                <!-- Buttons for action  -->
+                <div class="checkout-buttons">
+                    <button type="button" id="confirmBtn" class="btn-primary">Confirm Order</button>
+                    <button type="reset" id="clearBtn" class="btn cancel">Clear All</button>
+                    <button type="button" id="closeBtn" class="btn link">Close</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>For That Special Sweetness</p>
+        <p><a href="mailto:2405940@utech.edu.jm?">Contact Us</a></p>
+        <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+
+        //Load Payment page when page opens
+        document.addEventListener("DOMContentLoaded", loadPaymentPage);
+
+        function loadPaymentPage() {
+
+            //Get the cart from localStorage or create an empty array if none exists
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const tbody = document.getElementById("checkout-items");
+
+            let subtotal = 0;
+            tbody.innerHTML = "";    // Clear table before adding rows
+
+            //Loop through each item in tne cart
+            cart.forEach(item => {
+                const row = document.createElement("tr");
+               
+               //Total price for each item (price x quantity)
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                //Display item details
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${itemTotal.toFixed(2)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            //Calculate tax and grand total
+            const tax = subtotal * 0.05;         //5% tax
+            const shipping = 500;               //Shipping fee
+            const grandtotal = subtotal + tax + shipping;
+
+            //Display results on checkoyt page
+            document.getElementById("subtotal").textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById("tax").textContent = `$${tax.toFixed(2)}`;
+            document.getElementById("shipping").textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById("grand-total").textContent = `$${grandtotal.toFixed(2)}`;
+        }
+
+        //Confirm payment button
+        document.getElementById("confirmBtn").addEventListener("click", () => {
+            
+            //Collect values from inputs
+            const fullName = document.getElementById("fullname").value.trim();
+            const billingAddress = document.getElementById("billingAddress").value.trim();
+            const card = document.getElementById("cardNumber").value.trim();
+            const expiry = document.getElementById("expiry").value.trim();
+            const cvv = document.getElementById("cvv").value.trim();
+            const method = document.getElementById("paymentMethod").value.trim();
+            const amount = document.getElementById("payment").value.trim();
+
+
+            //Check if any field is empty
+            if (!fullName || !billingAddress || !card || !expiry || !cvv || !method || !amount) {
+                alert("⚠️ Please fill in all required fields before confirming your order!");
+                return;
+            }
+
+            //Success message for user paymnet
+            alert(`🎉 Payment Successful ${fullName}! Your order has been placed successfully.`);
+
+            localStorage.setItem("lastOrder", JSON.stringify({
+                name: fullName,
+                address: billingAddress,
+                method: method,
+                amount: amount,
+                cart: JSON.parse(localStorage.getItem("cart")) || []
+            }));
+           
+            //Clear cart after placing order
+            localStorage.removeItem("cart");
+
+            //Go to invoice page
+            window.location.href = "invoice.html";
+        }); 
+        
+        //Clear form button
+        document.getElementById("clearBtn").addEventListener("click", () => {
+            
+            //Ask user before clearing everything
+            if (confirm("Are you sure you want clear all fields?")) {
+                document.getElementById("paymentForm").reset();
+            }
+        });
+
+        //Close button(Goes back to home)
+        document.getElementById("closeBtn").addEventListener("click", function () {
+            window.location.href = "../index.html";
+        });
+   </script>
+</body>
+</html>
+
+
+  
+  

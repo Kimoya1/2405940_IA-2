@@ -1,0 +1,174 @@
+<!--Name: Kimoya Francis
+     Student ID: 2405940
+     Course: Web Programming
+     Individual Assessment #2 - E-Commerce Website
+     Cart Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KimmyCakes | Cart</title> <!-- Website Title -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section: with background image, logo, tagline and navigation  -->
+    <header class="header">
+        <div class="picture-bg">
+            <div class="logo"> 
+                <img src="../assets/logo.png" alt="Kimmy Cakes Logo" class="logo-image">
+                <h1>KimmyCakes</h1>
+                <p class="tagline">"Sweet Moments, Baked to Perfection"</p>
+            </div>
+        </div>
+        
+        <!--  Naviagtion bar -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="products.html">All Products</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Custom Orders</a></li>
+                    </ul>
+                </li>
+                  
+                <!-- Cart Page (active) -->
+                <li class="dropdown">
+                    <a href="cart.html" id="active">Cart</a>
+                    <ul class="dropdown-content">
+                        <li><a href="payment.html">Payment & Billing</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="invoice.html">Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.html">About Us</a></li>
+                
+                <li class="dropdown">
+                  <a href="#">Account</a>
+                  <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Order History</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="contact.html">Contact Us</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--  The main Cart Section -->
+    <main class="cart-section">
+        <h2>Your Shopping Cart 🛒</h2>
+        <p>Review your selected cakes and proceed to checkout.</p>
+
+        <!-- the table that displays items inside cart  -->
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+            <!-- The items will appear here using JS -->
+            </tbody>
+        </table>
+
+        <!--  Section showing the overall total cost + checkout button -->
+        <div class="cart-summary">
+            <h3>Total: <span id="cart-total">$0.00</span></h3>
+            <a href="shipping.html" class="checkout-button">Proceed to Checkout</a>
+        </div>
+    </main>
+
+    <!-- Footer Section-->
+    <footer class="footer">
+        <p>For That Special Sweetness</p>
+        <p><a href="mailto:2405940@utech.edu.jm">Contact Us</a></p>
+        <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+
+    <!-- JavaScript Section -->
+     <script>
+
+        // Loads page and runs loadCart function 
+        document.addEventListener("DOMContentLoaded", loadCart);
+
+        //This function loads cart items from localStorage and displays them
+        function loadCart() {
+
+            //Get cart from localStorage or use an empty array if none exists
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const tableBody = document.getElementById("cart-items");
+            const totalDisplay = document.getElementById("cart-total");
+
+            tableBody.innerHTML = "";       //Clear table before adding items
+            let total = 0;
+
+            //If the cart has no items 
+            if (cartItems.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5">Your cart is empty 🛍️</td></tr>'; 
+                totalDisplay.textContent = "$0.00";
+                return
+            }
+
+            //Loop through each item and display it in the table
+            cartItems.forEach((item, index) => {
+                const row = document.createElement("tr");
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;    //Add to total cost
+
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${itemTotal.toFixed(2)}</td>
+                    <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            //Display updated total
+            totalDisplay.textContent = `$${total.toFixed(2)}`;
+
+            //Add click event to remove button
+            document.querySelectorAll(".remove-btn").forEach(btn => {
+                btn.addEventListener("click", removeItem);
+            });
+        }
+
+        //This function removes an item from the cart
+        function removeItem(event) {
+            const index = event.target.dataset.index;     //Get item position
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cartItems.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cartItems));  //Update storage
+            
+            loadCart();  //Reload cart display
+        }
+    </script>
+</body>
+</html>
