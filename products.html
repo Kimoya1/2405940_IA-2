@@ -1,0 +1,184 @@
+<!--Name: Kimoya Francis
+     Student ID: 2405940
+     Course: Web Programming
+     Individual Assessment #2 - E-Commerce Website
+    Products Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KimmyCakes | Products</title> <!-- Website Title-->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body> 
+    <!-- Header Section: with logo, background image, title, and tagline -->
+    <header class="header">
+        <div class="picture-bg">
+            <div class="logo"> 
+                <img src="../assets/logo.png" alt="Kimmy Cakes Logo" class="logo-image">
+                <h1>KimmyCakes</h1>
+                <p class="tagline">"Sweet Moments, Baked To Perfection"</p>
+            </div>
+        </div>
+
+        <!-- Navigation bar with dropdown menus -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <!-- Products Page(active) -->
+                <li class="dropdown">
+                    <a href="products.html" id="active">All Products</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#custom">Custom Orders</a></li>
+                        <li><a href="#birthday">Birthday Cakes</a></li>
+                        <li><a href="#wedding-anniversary">Wedding & Anniversary Cakes</a></li>
+                        <li><a href="#holiday">Holiday Cakes</a></li>
+                    </ul>
+                </li>
+                 
+                <li class="dropdown">
+                    <a href="cart.html">Cart</a>
+                    <ul class="dropdown-content">
+                        <li><a href="payment.html">Payment & Billing</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="invoice.html">Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.html">About Us</a></li>
+                
+                <li class="dropdown">
+                    <a href="#">Account</a>
+                    <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Order History</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="contact.html">Contact Us</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Help</a></li>
+                   </ul>
+                </li>
+           </ul>
+       </nav>
+  </header>
+
+    <!-- Main section showing all cakes available for purchase -->  
+    <main class="products-section">
+        <h2>Explore Our Best-Selling Cakes </h2>
+        <p>Choose from a variety of handcrafted cakes, baked fresh with love.</p>
+
+       <!-- Container that holds all product cards-->
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="assets/cake1.jpg" alt="Chocolate Fudge Cake">
+                <h3>Chocolate Fudge Cake</h3>
+                <p>Rich, moist chocolate layers with creamy fudge frosting. Moist chocolate layers filled with silky cocoa fudge and topped<br> with, toasted pecans for the perfect blend of sweetness, texture, and indulgence.</p>
+                <p class="price">$4,500.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Chocolate Fudge Cake', 4500)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake2.jpg" alt="Vanilla Celebration Cake">
+                <h3>Vanilla Celebration Cake</h3>
+                <p>Light Vanilla sponge made with pure vanilla extract and fresh eggs, layered with whipped buttercream.<br> Finished with smooth white frosting swirls and festive sprinkles for a classic celebratory touch.</p>
+                <p class="price">$3,350.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Vanilla Celebration Cake', 3350)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake3.jpg" alt="Red Velvet Cake">
+                <h3>Strawberry-Red Velvet Cake</h3>
+                <p>Classic Red Velvet with silky red drizzle frosting cake filled with soft, moist layers and whipped cream cheese frosting.<br> For the perfect burst of flavor and color.</p>
+                <p class="price">$5,800.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Strawberry-Red Velvet Cake', 5800)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake5.png" alt="Pistachio-raspberry Cake">
+                <h3>Pistachio-Raspberry Cake </h3>
+                <p>Dynamic Pistachio-Raspberry has soft pistachio sponge layers, a tangy raspberry filling,<br> and a light whipped pistachio ganache, your perfect mix of nutty, fruity, and creamy.</p>
+                <p class="price">$6,000.00</p>
+                <button class="add-to-cart-btn" onclick= "addToCart('Pistachio-Raspberry Cake', 6000)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake6.png" alt="Magic Buttercream Cake">
+                <h3>Magic Buttercream Cake</h3>
+                <p>Luxurious, velvety texture with exceptional buttercream frosting a dliciously tasty and creamy mouthful<br> of a high-quality cake.</p>
+                <p class="price">$3,000.00</p>
+                <button class="add-to-cart-btn" onclick= "addToCart('Magic Buttercream Cake', 3350)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake7.jpg" alt="Golden Glory Birthday Cake">
+                <h3>Golden Glory Birthday Cake</h3>
+                <p>A chic pink-and-gold cake featuring smooth buttercream, elegant gold drips, delicate florals,<br> and shimmering macarons. Perfect for birthdays, graduations, promotions, and any milestone worth celebrating.</p>
+                <p class="price">$8,200.00</p>
+                <button class="add-to-cart-btn" onclick= "addToCart('Golden Glory Birthday Cake', 8200)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake9.jpg" alt="Festive Holiday Cake">
+                <h3>Festive Holiday Cake</h3>
+                <p>Jamaican Black Cake a decadent Caribbean specialty pudding, made with dried fruits soaked in rum and wine for<br> months in advance, giving it a dark color and strong, boozy flavor. That will give you a taste of the holiday spirit.</p>
+                <p class="price">$6,500.00</p>
+                <button class="add-to-cart-btn" onclick= "addToCart('Festive Holiday Cake', 6500)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake8.jpg" alt="Wedding/Anniversary Cake">
+                <h3>Timeless Wedding/Anniversary Cake</h3>
+                <p>This elegant triple decker white fondant cake with pink and white roses engraved,<br> is specially baked for a wedding or anniversary.</p>
+                <p class="price">$15,000.00</p>
+                <button class="add-to-cart-btn" onclick= "addToCart('Wedding/Anniversary Cake', 15000)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/cake4.jpg" alt="Custom Cake">
+                <h3>Customize Your Cake</h3>
+                <p>Personalize your cake with any designs of your choice for birthdays, weddings and more!</p>
+                <p class="price">$7,000.00</p>
+                <button class="add-to-cart-btn" onclick= "addToCart('Customize Your Cake', 7000)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section: with contact link with rights -->
+    <footer class="footer">
+        <p>For That Special Sweetness</p>
+        <p><a href="mailto:2405940@utech.edu.jm">Contact Us</a></p>
+        <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript: function that adds selected items to the cart using localStorage -->
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1})
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} has been added to your cart! 🍰`);
+        }
+    </script>
+</body>
+</html>
+
