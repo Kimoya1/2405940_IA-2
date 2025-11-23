@@ -1,0 +1,206 @@
+<!--Name: Kimoya Francis
+     Student ID: 2405940
+     Course: Web Programming
+     Individual Assessment #2 - E-Commerce Website
+     Shipping Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KimmyCakes | Shipping</title> <!-- Website Title-->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section: with background image, logo, tagline and navigation -->
+    <header class="header">
+        <div class="picture-bg">
+            <div class="logo"> 
+                <img src="assets/logo.png" alt="Kimmy Cakes Logo" class="logo-image">
+                <h1>KimmyCakes</h1>
+                <p class="tagline">"Sweet Moments, Baked to Perfection"</p>
+            </div>
+        </div>
+        
+        <!-- Navigation bar: with dropdown menu -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="products.html">All Products</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Custom Orders</a></li>
+                    </ul>
+                </li>
+                    
+                <!-- Cart Page(active) -->
+                <li class="dropdown">
+                    <a href="cart.html" id="active">Cart</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Order Summary</a></li>
+                        <li><a href="payment.html">Payment & Billing</a></li>
+                        <li><a href="shipping.html" id="active">Shipping Info</a></li>
+                        <li><a href="invoice.html">Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.html">About Us</a></li>
+                
+                <li class="dropdown">
+                  <a href="#">Account</a>
+                  <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Order History</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="contact.html">Contact Us</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Shipping Form Section -->
+    <main class="shipping-info">
+        <h3>Shipping Details 🚚</h3>
+
+        <!-- Shipping form container -->
+        <div class="shipping-box ">
+            <form id="checkoutForm">
+
+                <!--  Full Name field -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="Please enter full name" required>
+                
+                <!-- Phone Number field  -->
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" placeholder="Please enter phone number" required>
+                
+                <!-- Delivery Address -->
+                <label for="address">Address:</label>
+                <input type="text" id="address" placeholder="Please enter delivery address" required>
+
+                <!-- Email -->
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="example@email.com" required>
+
+                <!-- Parish dropdown  -->
+                <label for="parish">Parish:</label>
+                <select id="parish" required>
+                    <option value="">- Select Your Parish -</option>
+                    <option value="St. Andrew">St. Andrew (Kingston)</option>
+                    <option value="St. Catherine">St. Catherine</option>
+                    <option value="St. Thomas">St. Thomas</option>
+                    <option value="Clarendon">Clarendon</option>
+                    <option value="Manchester">Manchester</option>
+                </select>
+
+                <!-- Parish note -->
+                <small class="parish-note">If your parish is not listed, please select the closest one.</small>
+
+               <!-- City input -->
+                <label for="city">City:</label>
+                <input type="text" id="city" placeholder="Please enter city" required>
+                
+                <!-- Remmeber Checkbox  -->
+                <label class="remember">
+                <input type="checkbox" id="remember">Remember this address?</label>
+            </form>
+        </div>
+
+        <!-- Security Info Box  -->
+        <aside>
+            <p><strong>Security & Privacy</strong></p>
+            <small>We protect customer information using industry-standard safeguard.</small>
+            <a href="#" class="plain-link">Privacy & Policy</a>
+        </aside>
+
+        <!-- Save Button  -->
+        <button type="button" id="saveBtn" class="btn-primary">Save</button>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>For That Special Sweetness</p>
+        <p><a href="mailto:2405940@utech.edu.jm">Contact Us</a></p>
+        <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript: Save and Load Shipping Info -->
+    <script>
+        // Load saved shipping address when page opens
+        document.addEventListener("DOMContentLoaded", () => {
+        loadSavedAddress();
+    });
+
+    //Retrieve address from localStorage
+    function loadSavedAddress() {
+        const saved = JSON.parse(localStorage.getItem("savedAddress"));
+        if (!saved) return;
+
+        document.getElementById("fullName").value = saved.fullName;
+        document.getElementById("phoneNumber").value = saved.phoneNumber;
+        document.getElementById("address").value = saved.address;
+        document.getElementById("email").value = saved.email;
+        document.getElementById("parish").value = saved.parish;
+        document.getElementById("city").value = saved.city;
+
+        document.getElementById("remember").checked = true;
+    }
+
+    // Save address or continue without saving
+    document.getElementById("saveBtn").addEventListener("click", () => {
+        
+        const fullName = document.getElementById("fullName").value.trim();
+        const phoneNumber = document.getElementById("phoneNumber").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const parish = document.getElementById("parish").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const remember = document.getElementById("remember").checked;
+
+        //Validate required fields
+        if (!fullName || !phoneNumber || !address || !email || !parish || !city) {
+            alert("⚠️ Please fill in all required fields before confirming your order!");
+            return;
+        }
+
+        //Save address if check box is selected
+        if (remember) {
+            const savedAddress = {
+                fullName,
+                phoneNumber,
+                address,
+                email,
+                parish,
+                city
+            };
+
+            localStorage.setItem("savedAddress", JSON.stringify(savedAddress));
+            alert("✨Your address has been saved!");
+        } 
+        else {
+            localStorage.removeItem("savedAddress");
+            alert("✔Address submitted");
+        }
+
+        //Move to payment after saving
+        window.location.href = "payment.html";
+    });
+   </script>
+</body>
+</html>

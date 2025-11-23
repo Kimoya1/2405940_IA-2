@@ -1,0 +1,199 @@
+<!--Name: Kimoya Francis
+     Student ID: 2405940
+     Course: Web Programming
+     Individual Assessment #2 - E-Commerce Website
+     Register Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KimmyCakes | Register</title> <!-- Website Title-->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">    <script src="register.js" defer></script>
+</head>
+
+<body class="register-page">
+
+    <!-- Header Section: with logo, tagline and navigation menu -->
+    <header class="header">
+        <div class="picture-bg">
+            <div class="logo"> 
+                <img src="assets/logo.png" alt="Kimmy Cakes Logo" class="logo-image">
+                <h1>KimmyCakes</h1>
+                <p class="tagline">"Sweet Moments, Baked to Perfection"</p>
+            </div>
+        </div>
+        
+        <!-- Navigation bar with dropdown menu -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="products.html">All Products</a>
+                    <ul class="dropdown-content">
+                        <li><a href="products.html">Categories</a></li>
+                        <li><a href="#">Custom Orders</a></li>
+                        <li><a href="cart.html">Add to Cart</a></li>
+                    </ul>
+                </li>
+                    
+                <li class="dropdown">
+                    <a href="cart.html">Cart</a>
+                    <ul class="dropdown-content">
+                        <li><a href="payment.html">Payment & Billing</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="invoice.html">Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.html">About Us</a></li>
+                
+                <!-- Account Page(active) -->
+                <li class="dropdown">
+                  <a href="#" id="active">Account</a>
+                  <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html" id="active">Register</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Order History</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="contact.html">Contact Us</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main register form area -->
+    <main class="register-box">
+        <header class="header-box">
+            <h1>Create Your Account</h1>
+        </header>
+
+        <!-- Registration form starts here -->
+        <form id="registerForm" class="form-section">
+
+            <!-- Full name field -->
+            <div class="field">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="Please enter your full name">
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="field">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob">
+            </div>
+
+            <!-- Email field -->
+            <div class="field">
+                <label for="email"> Email:</label>
+                <input type="email" id="email" placeholder="example@email.com">
+            </div>
+
+            <!-- Username field -->
+            <div class="field">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Choose a username">
+            </div>
+
+            <!-- Password field -->
+            <div class="field">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Please enter password🔒">
+            </div>
+
+            <!-- Form Register and Cancel Buttons -->
+            <div class="actions">
+                <button type="submit" class="btn primary">Register</button>
+                <button type="button" class="btn cancel" id="cancelBtn">Cancel</button>
+            </div>
+
+            <!-- Link to login page -->
+            <div class="login-link">
+                <p>Already have an account? <a href="login.html" class="btn link">Log In</a></p>
+            </div>
+        </form>
+
+        <!-- Help Section: with mailto -->
+        <section class="help">
+            <p>Need help? Contact Us <a href="mailto:2405940@utech.edu.jm">KimmyCakesSupport</a></p>
+        </section>  
+    </main>
+
+    <!-- Footer Section  -->
+    <footer class="footer">
+        <p>For That Special Sweetness</p>
+        <p>&copy; 2025 All Rights Reserved</p>
+    </footer> 
+
+    <!-- JavaScript -->
+    <script>
+        //get saved registrations from localStorage
+        let registrations = JSON.parse(localStorage.getItem("registrations")) || [];
+
+        //Handle form submission
+        document.getElementById("registerForm").addEventListener("submit", function(event)
+        { event.preventDefault();
+
+            //Collect form values
+            const fullName = document.getElementById("fullName").value.trim();
+            const dob = document.getElementById("dob").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            //Validation: makes sure the fields are filled
+            if(!fullName || !dob|| !email || !username || !password) {
+                alert("⚠️ Please fill in all the required fields.");
+                return;
+            }
+
+            //Password length rule
+            if (password.length < 8) {
+                alert("⚠️ Password must be at least 8 characters.");
+                return;
+            }
+
+            //Create new user object
+            const newUser = {
+                fullName: fullName,
+                 dob: dob,
+                email: email,
+                username: username,
+                password: password,
+            };
+
+            //Save to array + localStorage
+            registrations.push(newUser);
+
+            localStorage.setItem("registrations", JSON.stringify(registrations));
+
+            alert("✅ Registration successful! Your details have been saved.");
+
+            //Reset for after success
+            document.getElementById("registerForm").reset();
+        });
+
+        //Cancel button action
+        document.getElementById("cancelBtn").addEventListener("click", function () {
+            const confirmCancel = confirm("Are you sure you want to cancel registration?");
+            if (confirmCancel) {
+                document.getElementById("registerForm").reset();
+                alert("Registration cancelled.");
+            }
+        });
+    </script>
+</body>
+</html>
