@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | KimmyCakes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+
+        <div class="picture-bg">
+            <div class="logo"> 
+                <img src="assets/logo.png" alt="KimmyCakes Logo" class="logo-image">
+                <h1>Welcome to KimmyCakes!</h1>
+                <p class="tagline">"Sweet Moments, Baked to Perfection"</p>
+            </div>
+        </div>
+
+        <!-- NAVIGATION + USERNAME -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">All Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+
+                <!-- Username Display -->
+                <li class="user-display">
+                    <span id="usernameDisplay">Welcome, User!</span>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- Profile Content -->
+    <main class="profile-container">
+
+        <section class="profile-card">
+
+            <h2>My Profile</h2>
+
+            <img src="assets/profile-placeholder.png" alt="User Photo" class="profile-photo">
+
+            <p><strong>Username:</strong> <span id="profileUsername">User123</span></p>
+            <p><strong>Email:</strong> user@example.com</p>
+            <p><strong>Member Since:</strong> January 2025</p>
+
+            <a href="orderhistory.html" class="btn-primary">View Order History</a>
+            <a href="login.html" class="btn-secondary" id="logoutBtn">Log Out</a>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>For That Special Sweetness</p>
+        <p><a href="mailto:2405940@utech.edu.jm">Contact Us</a></p>
+        <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+    <!-- Script to load username -->
+    <script>
+        // Retrieve saved username from localStorage (from login page)
+        const username = localStorage.getItem("username");
+
+        // Update display
+        if (username) {
+            document.getElementById("usernameDisplay").textContent = "Hello, " + username;
+            document.getElementById("profileUsername").textContent = username;
+        }
+
+        // Logout: remove username
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.removeItem("username");
+        });
+    </script>
+
+</body>
+</html>
